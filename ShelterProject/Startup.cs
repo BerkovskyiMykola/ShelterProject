@@ -98,7 +98,7 @@ namespace ShelterProject
             if (env.IsDevelopment())
             {
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "DepartmentStoreProject API v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ShelterProject API v1"));
                 app.UseDeveloperExceptionPage();
             }
             else
