@@ -74,7 +74,7 @@ const Shelter = (props) => {
                     <Col className="text-left"><h3>{t("shelters")}</h3></Col>
                     <Col className="text-right">
                         <Button onClick={() => { clearFields(); setModalAdd(true); }} color="success">{t("Create")}</Button>
-                        <Button onClick={() => { dispatch(getShelters()); }}>
+                        <Button onClick={() => { dispatch(getShelters()); }} color="dark">
                             <i className="fa fa-refresh" aria-hidden="true"></i>
                         </Button>
                     </Col>

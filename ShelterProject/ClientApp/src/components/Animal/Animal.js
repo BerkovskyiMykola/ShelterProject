@@ -74,7 +74,7 @@ const Animal = (props) => {
 
     return (
         <Container>
-            <Jumbotron className="bg-dark text-white">
+            <Jumbotron style={{ backgroundColor: "#EEF7FB"}}>
                 <Row>
                     <Col className="text-left">
                         <h3>

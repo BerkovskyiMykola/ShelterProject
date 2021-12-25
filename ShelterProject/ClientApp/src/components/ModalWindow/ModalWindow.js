@@ -27,7 +27,7 @@ const ModalWindow = ({ modal, deactiveModal, message, children, textHeader, text
                     message={message} setCheckBtn={setCheckBtn}>
                     {children}
                     <div className="form-group">
-                        <button className="btn btn-primary btn-block">{textButton}</button>
+                        <button className="btn btn-dark btn-block">{textButton}</button>
                     </div>
                 </Form>
             </ModalBody>

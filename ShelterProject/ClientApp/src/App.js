@@ -55,10 +55,9 @@ export default function App() {
         <Router history={history}>
             <div>
                 <Navbar
-                    color="dark"
+                    color="success"
                     dark
                     expand="md"
-                    light
                 >
                     <NavbarBrand tag={RRNavLink} exact to="/">
                         ShelterProject

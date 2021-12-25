@@ -40,15 +40,15 @@ export default function Profile(props) {
 
     return (
         <Container>
-            <Jumbotron className="bg-dark text-white">
+            <Jumbotron style={{ backgroundColor: "#EEF7FB" }}>
                 <Row>
                     <Col className="text-left">
                         <h3>
-                            <strong>{t("Profile")}: {profile.lastname} {profile.firstname}</strong>
+                            <strong>{profile.lastname} {profile.firstname}</strong>
                         </h3>
                     </Col>
                     <Col className="text-right">
-                        <Button onClick={() => { dispatch(clearMessage()); setModalEdit(true); setModel(profile); }}>
+                        <Button color="warning" onClick={() => { dispatch(clearMessage()); setModalEdit(true); setModel(profile); }}>
                             {t("Edit")}
                         </Button>
                     </Col>

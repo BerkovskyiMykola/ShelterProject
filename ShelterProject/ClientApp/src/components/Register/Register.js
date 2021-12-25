@@ -55,7 +55,7 @@ export default function Register(props) {
                             setValue={(e) => { setModel({ ...model, "password": e.target.value }) }} validations={[validateRequired(t), validatePassword(t)]} />
 
                         <div className="form-group">
-                            <button className="btn btn-primary btn-block">{t("SignUp")}</button>
+                            <button className="btn btn-dark btn-block">{t("SignUp")}</button>
                         </div>
                     </div>
                 </Form>
