@@ -90,10 +90,10 @@ namespace ShelterProject.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "LogPoins",
+                name: "LogPoints",
                 columns: table => new
                 {
-                    LogPoinId = table.Column<int>(type: "int", nullable: false)
+                    LogPointId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Point = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -101,9 +101,9 @@ namespace ShelterProject.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_LogPoins", x => x.LogPoinId);
+                    table.PrimaryKey("PK_LogPoints", x => x.LogPointId);
                     table.ForeignKey(
-                        name: "FK_LogPoins_Walks_WalkId",
+                        name: "FK_LogPoints_Walks_WalkId",
                         column: x => x.WalkId,
                         principalTable: "Walks",
                         principalColumn: "WalkId",
@@ -116,8 +116,8 @@ namespace ShelterProject.Migrations
                 column: "ShelterId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_LogPoins_WalkId",
-                table: "LogPoins",
+                name: "IX_LogPoints_WalkId",
+                table: "LogPoints",
                 column: "WalkId");
 
             migrationBuilder.CreateIndex(
@@ -134,7 +134,7 @@ namespace ShelterProject.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "LogPoins");
+                name: "LogPoints");
 
             migrationBuilder.DropTable(
                 name: "Walks");

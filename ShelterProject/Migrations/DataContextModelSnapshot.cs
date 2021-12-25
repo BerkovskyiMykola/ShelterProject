@@ -51,9 +51,9 @@ namespace ShelterProject.Migrations
                     b.ToTable("Animals");
                 });
 
-            modelBuilder.Entity("ShelterProject.Models.LogPoin", b =>
+            modelBuilder.Entity("ShelterProject.Models.LogPoint", b =>
                 {
-                    b.Property<int>("LogPoinId")
+                    b.Property<int>("LogPointId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -67,11 +67,11 @@ namespace ShelterProject.Migrations
                     b.Property<int>("WalkId")
                         .HasColumnType("int");
 
-                    b.HasKey("LogPoinId");
+                    b.HasKey("LogPointId");
 
                     b.HasIndex("WalkId");
 
-                    b.ToTable("LogPoins");
+                    b.ToTable("LogPoints");
                 });
 
             modelBuilder.Entity("ShelterProject.Models.Shelter", b =>
@@ -174,10 +174,10 @@ namespace ShelterProject.Migrations
                     b.Navigation("Shelter");
                 });
 
-            modelBuilder.Entity("ShelterProject.Models.LogPoin", b =>
+            modelBuilder.Entity("ShelterProject.Models.LogPoint", b =>
                 {
                     b.HasOne("ShelterProject.Models.Walk", "Walk")
-                        .WithMany()
+                        .WithMany("LogPoints")
                         .HasForeignKey("WalkId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -220,6 +220,11 @@ namespace ShelterProject.Migrations
             modelBuilder.Entity("ShelterProject.Models.User", b =>
                 {
                     b.Navigation("Shelters");
+                });
+
+            modelBuilder.Entity("ShelterProject.Models.Walk", b =>
+                {
+                    b.Navigation("LogPoints");
                 });
 #pragma warning restore 612, 618
         }

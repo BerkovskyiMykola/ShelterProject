@@ -34,6 +34,9 @@ i18n.use(LanguageDetector).init({
                 dateEnd: "Date and time of the end",
                 dateStart: "Date and time of the start",
                 volunteer: "Volunteer",
+                logPoints: "Log Points",
+                point: "Point",
+                dateTime: "Date and Time",
 
                 "This field is required!": "This field is required!",
                 "This is not a valid email. Example: example@example.com": "This is not a valid email. Example: example@example.com",
@@ -79,6 +82,9 @@ i18n.use(LanguageDetector).init({
                 dateEnd: "Дата й час кінця",
                 dateStart: "Дата й час початку",
                 volunteer: "Волонтер",
+                logPoints: "Точки логування",
+                point: "Точка",
+                dateTime: "Дата й час",
 
                 "This field is required!": "Це поле необхідне!",
                 "This is not a valid email. Example: example@example.com": "Це не валідна пошта. Наприклад: example@example.com",

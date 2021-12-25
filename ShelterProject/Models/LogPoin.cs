@@ -2,9 +2,9 @@
 
 namespace ShelterProject.Models
 {
-    public class LogPoin
+    public class LogPoint
     {
-        public int LogPoinId { get; set; }
+        public int LogPointId { get; set; }
         public string Point { get; set;}
         public DateTime DateTime { get; set;}
 

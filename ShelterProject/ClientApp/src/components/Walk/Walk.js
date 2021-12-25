@@ -75,7 +75,7 @@ const Walk = (props) => {
     }
 
     const openPage = (item) => {
-        props.history.push("/???/" + item.walkId);
+        props.history.push("/logPoints/" + item.walkId);
     }
 
     return (

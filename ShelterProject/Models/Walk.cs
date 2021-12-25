@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace ShelterProject.Models
@@ -14,5 +15,7 @@ namespace ShelterProject.Models
 
         public int AnimalId { get; set; }
         public Animal Animal { get; set; }
+
+        public List<LogPoint> LogPoints { get; set; } = new List<LogPoint>();
     }
 }

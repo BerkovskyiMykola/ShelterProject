@@ -6,6 +6,7 @@ import profile from "./profile";
 import animal from "./animal";
 import shelter from "./shelter";
 import walk from "./walk";
+import logPoint from "./logPoint";
 
 export default combineReducers({
     auth,
@@ -14,5 +15,6 @@ export default combineReducers({
     profile,
     animal,
     shelter,
-    walk
+    walk,
+    logPoint
 });
