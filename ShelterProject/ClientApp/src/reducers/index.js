@@ -5,6 +5,7 @@ import user from "./user";
 import profile from "./profile";
 import animal from "./animal";
 import shelter from "./shelter";
+import walk from "./walk";
 
 export default combineReducers({
     auth,
@@ -12,5 +13,6 @@ export default combineReducers({
     user,
     profile,
     animal,
-    shelter
+    shelter,
+    walk
 });

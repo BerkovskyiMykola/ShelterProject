@@ -5,35 +5,40 @@ import { validateField, validateRequired } from '../../validation/validation';
 import { Field } from '../FormComponents';
 import ModalWindow from '../ModalWindow/ModalWindow';
 import List from '../ListComponents/List'
-import { createAnimal, deleteAnimal, editAnimal, getAnimals } from '../../actions/animal';
+import { createWalk, deleteWalk, editWalk, getWalks } from '../../actions/walk';
 import { clearMessage } from '../../actions/message';
 import { useTranslation } from 'react-i18next';
 
-const Animal = (props) => {
+const Walk = (props) => {
+    const convertDate = (dateTime) => {
+        return new Date(dateTime.getTime() - (dateTime.getTimezoneOffset() * 60000)).toISOString();
+    }
+
     const id = props.match.params.id;
 
-    const [model, setModel] = useState({ animalId: 0, name: "", category: "", type: "" });
+    const [model, setModel] = useState({ walkId: 0, volunteer: "", dateEnd: convertDate(new Date()).substring(0, 16) });
     const { t } = useTranslation();
     const [modalAdd, setModalAdd] = useState(false);
     const [modalEdit, setModalEdit] = useState(false);
 
     const dispatch = useDispatch();
 
-    const { Address, Name, animals, message } = useSelector(state => ({
-        Name: state.animal.name,
-        Address: state.animal.address,
-        animals: state.animal.animals,
+    const { category, name, type, walks, message } = useSelector(state => ({
+        name: state.walk.name,
+        category: state.walk.category,
+        type: state.walk.type,
+        walks: state.walk.walks,
         message: state.message.message
     }), shallowEqual)
 
     useEffect(() => {
-        dispatch(getAnimals(id))
+        dispatch(getWalks(id))
             .then(() => { })
             .catch(() => { props.history.push("/404") });
     }, [id, dispatch, props.history])
 
     const createRecord = () => {
-        dispatch(createAnimal(model.name, model.category, model.type, id))
+        dispatch(createWalk(model.volunteer, model.dateEnd, id))
             .then(() => {
                 setModalAdd(false);
                 dispatch(clearMessage());
@@ -43,11 +48,11 @@ const Animal = (props) => {
     }
 
     const clearFields = () => {
-        setModel({ animalId: 0, name: "", category: "", type: "" })
+        setModel({ walkId: 0, volunteer: "", dateEnd: convertDate(new Date()).substring(0, 16) })
     }
 
     const editRecord = () => {
-        dispatch(editAnimal(model.animalId, model.name, model.category, model.type))
+        dispatch(editWalk(model.walkId, model.volunteer, model.dateEnd))
             .then(() => {
                 setModalEdit(false);
                 dispatch(clearMessage());
@@ -57,19 +62,20 @@ const Animal = (props) => {
     }
 
     const deleteRecord = (item) => {
-        dispatch(deleteAnimal(item.animalId))
+        dispatch(deleteWalk(item.walkId))
             .then(() => { })
             .catch(() => { })
     }
 
     const getUserValues = (item) => {
-        setModel(item);
+
+        setModel({ walkId: item.walkId, volunteer: item.volunteer, dateEnd: convertDate(new Date(walks.find(x => x.walkId === item.walkId).dateEnd)).substr(0, 16) });
         dispatch(clearMessage());
         setModalEdit(true);
     }
 
     const openPage = (item) => {
-        props.history.push("/walks/" + item.animalId);
+        props.history.push("/???/" + item.walkId);
     }
 
     return (
@@ -78,14 +84,17 @@ const Animal = (props) => {
                 <Row>
                     <Col className="text-left">
                         <h3>
-                            <strong>{t("name")}: {Name}</strong>
+                            <strong>{t("name")}: {name}</strong>
                         </h3>
                         <h3>
-                            <strong>{t("address")}: {Address}</strong>
+                            <strong>{t("type")}: {type}</strong>
+                        </h3>
+                        <h3>
+                            <strong>{t("category")}: {category}</strong>
                         </h3>
                     </Col>
                     <Col className="text-right">
-                        <Button onClick={() => { dispatch(getAnimals(id)); }}>
+                        <Button onClick={() => { dispatch(getWalks(id)); }}>
                             <i className="fa fa-refresh" aria-hidden="true"></i>
                         </Button>
                     </Col>
@@ -93,38 +102,34 @@ const Animal = (props) => {
             </Jumbotron>
             <Container>
                 <Row>
-                    <Col className="text-left"><h3>{t("animals")}</h3></Col>
+                    <Col className="text-left"><h3>{t("walks")}</h3></Col>
                     <Col className="text-right">
                         <Button onClick={() => { clearFields(); setModalAdd(true); }} color="success">{t("Create")}</Button>
                     </Col>
                 </Row>
             </Container>
 
-            <List recorts={animals} k="animalId" columns={['name', 'category', 'type']} deleteRecord={deleteRecord} editRecord={getUserValues} openPage={openPage}/>
+            <List recorts={walks.map(x => { return { ...x, dateStart: new Date(x.dateStart).toLocaleString(), dateEnd: new Date(x.dateEnd).toLocaleString() } })} k="walkId" columns={['volunteer', 'dateStart', 'dateEnd']} deleteRecord={deleteRecord} editRecord={getUserValues} openPage={openPage}/>
 
             <ModalWindow modal={modalAdd} deactiveModal={() => setModalAdd(false)} textHeader={t("Create")}
                 textButton={t("Create")} method={createRecord} message={message}
             >
-                <Field name="name" value={model}
-                    setValue={(e) => { setModel({ ...model, "name": e.target.value }) }} validations={[validateRequired(t), validateField(t)]} />
-                <Field name="category" value={model}
-                    setValue={(e) => { setModel({ ...model, "category": e.target.value }) }} validations={[validateRequired(t), validateField(t)]} />
-                <Field name="type" value={model}
-                    setValue={(e) => { setModel({ ...model, "type": e.target.value }) }} validations={[validateRequired(t), validateField(t)]} />
+                <Field name="volunteer" value={model}
+                    setValue={(e) => { setModel({ ...model, "volunteer": e.target.value }) }} validations={[validateRequired(t), validateField(t)]} />
+                <Field name="dateEnd" value={model}
+                    setValue={(e) => { setModel({ ...model, "dateEnd": convertDate(new Date(e.target.value)).substring(0, 16) }) }} type="datetime-local" min={convertDate(new Date()).substr(0, 16)} />
             </ModalWindow>
 
             <ModalWindow modal={modalEdit} deactiveModal={() => setModalEdit(false)} textHeader={t("Edit")}
                 method={editRecord} message={message} textButton={t("Edit")}
             >
-                <Field name="name" value={model}
-                    setValue={(e) => { setModel({ ...model, "name": e.target.value }) }} validations={[validateRequired(t), validateField(t)]} />
-                <Field name="category" value={model}
-                    setValue={(e) => { setModel({ ...model, "category": e.target.value }) }} validations={[validateRequired(t), validateField(t)]} />
-                <Field name="type" value={model}
-                    setValue={(e) => { setModel({ ...model, "type": e.target.value }) }} validations={[validateRequired(t), validateField(t)]} />
+                <Field name="volunteer" value={model}
+                    setValue={(e) => { setModel({ ...model, "volunteer": e.target.value }) }} validations={[validateRequired(t), validateField(t)]} />
+                <Field name="dateEnd" value={model}
+                    setValue={(e) => { setModel({ ...model, "dateEnd": e.target.value.substring(0, 16) }) }} type="datetime-local" min={convertDate(new Date()).substr(0, 16)} />
             </ModalWindow>
         </Container>
     );
 };
 
-export default Animal;
+export default Walk;

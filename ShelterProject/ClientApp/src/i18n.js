@@ -30,6 +30,10 @@ i18n.use(LanguageDetector).init({
                 animals: "Animals",
                 category: "Breed",
                 type: "Type",
+                walks: "Walks",
+                dateEnd: "Date and time of the end",
+                dateStart: "Date and time of the start",
+                volunteer: "Volunteer",
 
                 "This field is required!": "This field is required!",
                 "This is not a valid email. Example: example@example.com": "This is not a valid email. Example: example@example.com",
@@ -71,6 +75,10 @@ i18n.use(LanguageDetector).init({
                 animals: "Тварини",
                 category: "Порода",
                 type: "Тип",
+                walks: "Прогулянки",
+                dateEnd: "Дата й час кінця",
+                dateStart: "Дата й час початку",
+                volunteer: "Волонтер",
 
                 "This field is required!": "Це поле необхідне!",
                 "This is not a valid email. Example: example@example.com": "Це не валідна пошта. Наприклад: example@example.com",

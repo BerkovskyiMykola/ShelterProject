@@ -9,6 +9,7 @@ import Profile from "./components/Profile";
 import User from "./components/User/User";
 import Animal from "./components/Animal/Animal";
 import Shelter from "./components/Shelter/Shelter";
+import Walk from "./components/Walk/Walk";
 import { Home } from "./components/Home";
 import NotFound from "./components/NotFound";
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
@@ -121,6 +122,7 @@ export default function App() {
                         <PrivateRoute exact path="/profile" component={Profile} />
                         <PrivateRoute exact path="/shelters" component={Shelter} roles={["User"]} />
                         <PrivateRoute exact path="/animals/:id" component={Animal} roles={["User"]} />
+                        <PrivateRoute exact path="/walks/:id" component={Walk} roles={["User"]} />
                         <Route exact path="/404" component={NotFound} />
                         <Route component={NotFound} />
                     </Switch>
