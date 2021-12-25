@@ -3,10 +3,14 @@ import auth from "./auth";
 import message from "./message";
 import user from "./user";
 import profile from "./profile";
+import animal from "./animal";
+import shelter from "./shelter";
 
 export default combineReducers({
     auth,
     message,
     user,
-    profile
+    profile,
+    animal,
+    shelter
 });

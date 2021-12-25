@@ -7,6 +7,8 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Profile from "./components/Profile";
 import User from "./components/User/User";
+import Animal from "./components/Animal/Animal";
+import Shelter from "./components/Shelter/Shelter";
 import { Home } from "./components/Home";
 import NotFound from "./components/NotFound";
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
@@ -86,6 +88,11 @@ export default function App() {
                                             <NavLink tag={RRNavLink} exact to="/users">{t("Users")}</NavLink>
                                         </NavItem>
                                     }
+                                    {user.role === "User" &&
+                                        <NavItem>
+                                            <NavLink tag={RRNavLink} exact to="/shelters">{t("shelters")}</NavLink>
+                                        </NavItem>
+                                    }
                                     <li className="nav-item">
                                         <a href="/login" className="nav-link" onClick={logOut}>
                                             {t("LogOut")}
@@ -112,6 +119,8 @@ export default function App() {
                         <Route exact path="/register" component={Register} />
                         <PrivateRoute exact path="/users" component={User} roles={["Admin"]} />
                         <PrivateRoute exact path="/profile" component={Profile} />
+                        <PrivateRoute exact path="/shelters" component={Shelter} roles={["User"]} />
+                        <PrivateRoute exact path="/animals/:id" component={Animal} roles={["User"]} />
                         <Route exact path="/404" component={NotFound} />
                         <Route component={NotFound} />
                     </Switch>

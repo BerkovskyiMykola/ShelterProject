@@ -14,7 +14,7 @@ namespace ShelterProject.Models
         public string Type { set; get; }
         [Required]
         [StringLength(30, MinimumLength = 2)]
-        public string Сategory { set; get; }
+        public string Category { set; get; }
 
         public int ShelterId { get; set; }
         public Shelter Shelter { get; set; }
