@@ -40,7 +40,7 @@ namespace ShelterProject.Controllers
                 shelter.Address,
                 Animals = shelter.Animals.Select(x => new {
                     x.AnimalId,
-                    x.Name,
+                    AnimalName = x.Name,
                     x.Category,
                     x.Type
                 })
@@ -91,7 +91,7 @@ namespace ShelterProject.Controllers
             return Ok(new
             {
                 animal.AnimalId,
-                animal.Name,
+                AnimalName = animal.Name,
                 animal.Category,
                 animal.Type
             });

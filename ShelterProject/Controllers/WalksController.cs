@@ -86,7 +86,8 @@ namespace ShelterProject.Controllers
                 return BadRequest();
             }
 
-            walk.DateStart = DateTime.Now;
+            walk.DateStart = walk.DateStart;
+            walk.DateEnd = walk.DateStart.AddHours(1);
 
             _context.Walks.Add(walk);
             await _context.SaveChangesAsync();

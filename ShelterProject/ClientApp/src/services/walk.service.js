@@ -9,8 +9,8 @@ class WalkService {
         return axios.get(API_URL + "all/" + id, { headers: authHeader() });
     }
 
-    createWalk(volunteer, dateEnd, animalId) {
-        return axios.post(API_URL + "create", { volunteer, dateEnd, animalId }, { headers: authHeader() });
+    createWalk(volunteer, dateStart, animalId) {
+        return axios.post(API_URL + "create", { volunteer, dateStart, animalId }, { headers: authHeader() });
     }
 
     deleteWalk(id) {

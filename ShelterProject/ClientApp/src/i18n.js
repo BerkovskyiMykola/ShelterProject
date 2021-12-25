@@ -37,6 +37,7 @@ i18n.use(LanguageDetector).init({
                 logPoints: "Log Points",
                 point: "Point",
                 dateTime: "Date and Time",
+                animalName: "Animal name",
 
                 "This field is required!": "This field is required!",
                 "This is not a valid email. Example: example@example.com": "This is not a valid email. Example: example@example.com",
@@ -85,6 +86,7 @@ i18n.use(LanguageDetector).init({
                 logPoints: "Точки логування",
                 point: "Точка",
                 dateTime: "Дата й час",
+                animalName: "Ім'я тварини",
 
                 "This field is required!": "Це поле необхідне!",
                 "This is not a valid email. Example: example@example.com": "Це не валідна пошта. Наприклад: example@example.com",

@@ -54,8 +54,8 @@ export const editWalk = (walkId, volunteer, dateEnd) => (dispatch) => {
     )
 }
 
-export const createWalk = (volunteer, dateEnd, animalId) => (dispatch) => {
-    return walkService.createWalk(volunteer, dateEnd, animalId).then(
+export const createWalk = (volunteer, dateStart, animalId) => (dispatch) => {
+    return walkService.createWalk(volunteer, dateStart, animalId).then(
         (responce) => {
             dispatch({
                 type: CREATE_WALK_SUCCESS,

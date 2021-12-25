@@ -12,7 +12,7 @@ import { useTranslation } from 'react-i18next';
 const Animal = (props) => {
     const id = props.match.params.id;
 
-    const [model, setModel] = useState({ animalId: 0, name: "", category: "", type: "" });
+    const [model, setModel] = useState({ animalId: 0, animalName: "", category: "", type: "" });
     const { t } = useTranslation();
     const [modalAdd, setModalAdd] = useState(false);
     const [modalEdit, setModalEdit] = useState(false);
@@ -33,7 +33,7 @@ const Animal = (props) => {
     }, [id, dispatch, props.history])
 
     const createRecord = () => {
-        dispatch(createAnimal(model.name, model.category, model.type, id))
+        dispatch(createAnimal(model.animalName, model.category, model.type, id))
             .then(() => {
                 setModalAdd(false);
                 dispatch(clearMessage());
@@ -47,7 +47,7 @@ const Animal = (props) => {
     }
 
     const editRecord = () => {
-        dispatch(editAnimal(model.animalId, model.name, model.category, model.type))
+        dispatch(editAnimal(model.animalId, model.animalName, model.category, model.type))
             .then(() => {
                 setModalEdit(false);
                 dispatch(clearMessage());
@@ -100,13 +100,13 @@ const Animal = (props) => {
                 </Row>
             </Container>
 
-            <List recorts={animals} k="animalId" columns={['name', 'category', 'type']} deleteRecord={deleteRecord} editRecord={getUserValues} openPage={openPage}/>
+            <List recorts={animals} k="animalId" columns={['animalName', 'category', 'type']} deleteRecord={deleteRecord} editRecord={getUserValues} openPage={openPage}/>
 
             <ModalWindow modal={modalAdd} deactiveModal={() => setModalAdd(false)} textHeader={t("Create")}
                 textButton={t("Create")} method={createRecord} message={message}
             >
-                <Field name="name" value={model}
-                    setValue={(e) => { setModel({ ...model, "name": e.target.value }) }} validations={[validateRequired(t), validateField(t)]} />
+                <Field name="animalName" value={model}
+                    setValue={(e) => { setModel({ ...model, "animalName": e.target.value }) }} validations={[validateRequired(t), validateField(t)]} />
                 <Field name="category" value={model}
                     setValue={(e) => { setModel({ ...model, "category": e.target.value }) }} validations={[validateRequired(t), validateField(t)]} />
                 <Field name="type" value={model}
@@ -116,8 +116,8 @@ const Animal = (props) => {
             <ModalWindow modal={modalEdit} deactiveModal={() => setModalEdit(false)} textHeader={t("Edit")}
                 method={editRecord} message={message} textButton={t("Edit")}
             >
-                <Field name="name" value={model}
-                    setValue={(e) => { setModel({ ...model, "name": e.target.value }) }} validations={[validateRequired(t), validateField(t)]} />
+                <Field name="animalName" value={model}
+                    setValue={(e) => { setModel({ ...model, "animalName": e.target.value }) }} validations={[validateRequired(t), validateField(t)]} />
                 <Field name="category" value={model}
                     setValue={(e) => { setModel({ ...model, "category": e.target.value }) }} validations={[validateRequired(t), validateField(t)]} />
                 <Field name="type" value={model}

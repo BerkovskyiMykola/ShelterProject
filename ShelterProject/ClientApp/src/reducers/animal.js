@@ -33,7 +33,7 @@ export default function (state = initialState, action) {
                     if (item.animalId === payload.animalId)
                         return {
                             ...item,
-                            name: payload.name,
+                            animalName: payload.name,
                             category: payload.category,
                             type: payload.type
                         }
