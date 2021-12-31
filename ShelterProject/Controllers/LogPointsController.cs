@@ -83,6 +83,38 @@ namespace ShelterProject.Controllers
                 logPoin.DateTime
             });
         }
+
+        [HttpPost("createRandomFromIOT/{id}")]
+        public async Task<IActionResult> PostLogPoinFromIOT(int id)
+        {
+            var walk = await _context.Walks
+                .Include(x => x.LogPoints)
+                .SingleOrDefaultAsync(x => x.WalkId == id);
+
+            if (walk == null)
+            {
+                return BadRequest();
+            }
+
+            if (walk.DateEnd < DateTime.Now)
+            {
+                return BadRequest();
+            }
+
+            Random random = new Random();
+
+            var logPoin = new LogPoint
+            {
+                DateTime = DateTime.Now,
+                Point = $"{random.NextDouble(-180, 180)}, {random.NextDouble(-180, 180)}",
+                WalkId = id
+            };
+
+            _context.LogPoints.Add(logPoin);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
     }
 
     public static class RandomExtensions
